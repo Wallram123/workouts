@@ -1,9 +1,11 @@
 #!/bin/bash
-echo "Collecting static files"
+
+echo "Installing requirements..."
+python3 -m pip install -r requirements.txt
+
+echo "Running migrations..."
+python3 manage.py makemigrations --noinput
+python3 manage.py migrate --noinput
+
+echo "Collecting static files..."
 python3 manage.py collectstatic --noinput
-
-echo "Creating static files directory"
-mkdir -p staticfiles
-
-echo "Copying static files"
-cp -r static staticfiles
