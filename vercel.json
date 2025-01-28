@@ -1,27 +1,20 @@
 {
   "version": 2,
-  "builds": [
+"builds": [
     {
-      "src": "workouts/wsgi.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static"
+        "src": "workouts/wsgi.py",
+        "use": "@vercel/python"
     }
-  ],
-  "routes": [
+],
+
+"routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/staticfiles/$1"
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
     },
     {
-      "src": "/favicon.ico",
-      "dest": "/static/favicon.ico"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "workouts/wsgi.py"
+        "src": "/(.*)",
+        "dest": "workouts/wsgi.py"
     }
-  ]
+]
 }
