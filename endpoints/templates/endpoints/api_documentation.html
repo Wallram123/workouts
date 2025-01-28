@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout API Documentation</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Workout API Documentation</h1>
+
+    <h2>Activity Endpoints</h2>
+    <table>
+        <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Input Parameters</th>
+            <th>Status Codes</th>
+        </tr>
+        <tr>
+            <td>/activity/</td>
+            <td>GET</td>
+            <td>Hämtar alla aktiviteter. Returnerar en lista med aktiviteter.</td>
+            <td>N/A</td>
+            <td>
+                <ul>
+                    <li>200 OK - activities [{object}] - id {int} - name {string} - has_time {bool} - has_distance {bool} - distance_unit {string} - user {int}</li>
+                    <li>400 Bad Request: Ogiltiga query-parametrar.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/activity/</td>
+            <td>POST</td>
+            <td>Sparar en ny aktivitet.</td>
+            <td>
+                <ul>
+                    <li>name (str, required)</li>
+                    <li>has_time (bool, required)</li>
+                    <li>has_distance (bool, required)</li>
+                    <li>distance_unit (str, optional, 'km' eller 'm')</li>
+                    <li>user (int, required)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>201 Created - activity {object} - id {int}</li>
+                    <li>400 Bad Request: Ogiltiga inparametrar.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/activity/{id}</td>
+            <td>GET</td>
+            <td>Hämtar en specifik aktivitet baserat på id.</td>
+            <td>
+                <ul>
+                    <li>id (int, required)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>200 OK - activity {object} - id {int} - name {string} - has_time {bool} - has_distance {bool} - distance_unit {string} - user {int}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/activity/{id}</td>
+            <td>PUT</td>
+            <td>Uppdaterar en specifik aktivitet baserat på id.</td>
+            <td>
+                <ul>
+                    <li>id (int, required)</li>
+                    <li>name (str, optional)</li>
+                    <li>has_time (bool, optional)</li>
+                    <li>has_distance (bool, optional)</li>
+                    <li>distance_unit (str, optional, 'km' eller 'm')</li>
+                    <li>user (int, optional)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>200 OK - activity {object} - id {int} - name {string} - has_time {bool} - has_distance {bool} - distance_unit {string} - user {int}</li>
+                    <li>400 Bad Request: Ogiltiga inparametrar.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/activity/{id}</td>
+            <td>DELETE</td>
+            <td>Raderar en specifik aktivitet baserat på id.</td>
+            <td>
+                <ul>
+                    <li>id (int, required)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>204 No Content</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <h2>Workout Endpoints</h2>
+    <table>
+        <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Input Parameters</th>
+            <th>Status Codes</th>
+        </tr>
+        <tr>
+            <td>/workout/</td>
+            <td>GET</td>
+            <td>Hämtar alla workouts. Returnerar en lista med workouts.</td>
+            <td>N/A</td>
+            <td>
+                <ul>
+                    <li>200 OK - workouts [{object}] - id {int} - date {date} - activity {int} - user {int} - description {string} - time {duration} - distance {decimal} - rpe {int}</li>
+                    <li>400 Bad Request: Ogiltiga query-parametrar.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/workout/</td>
+            <td>POST</td>
+            <td>Sparar en ny workout.</td>
+            <td>
+                <ul>
+                    <li>date (date, required)</li>
+                    <li>activity (int, required)</li>
+                    <li>user (int, required)</li>
+                    <li>description (str, optional)</li>
+                    <li>time (duration, optional)</li>
+                    <li>distance (decimal, optional)</li>
+                    <li>rpe (int, optional)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>201 Created - workout {object} - id {int}</li>
+                    <li>400 Bad Request: Ogiltiga inparametrar.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/workout/{id}</td>
+            <td>GET</td>
+            <td>Hämtar en specifik workout baserat på id.</td>
+            <td>
+                <ul>
+                    <li>id (int, required)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>200 OK - workout {object} - id {int} - date {date} - activity {int} - user {int} - description {string} - time {duration} - distance {decimal} - rpe {int}</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/workout/{id}</td>
+            <td>PUT</td>
+            <td>Uppdaterar en specifik workout baserat på id.</td>
+            <td>
+                <ul>
+                    <li>id (int, required)</li>
+                    <li>date (date, optional)</li>
+                    <li>activity (int, optional)</li>
+                    <li>user (int, optional)</li>
+                    <li>description (str, optional)</li>
+                    <li>time (duration, optional)</li>
+                    <li>distance (decimal, optional)</li>
+                    <li>rpe (int, optional)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>200 OK - workout {object} - id {int} - date {date} - activity {int} - user {int} - description {string} - time {duration} - distance {decimal} - rpe {int}</li>
+                    <li>400 Bad Request: Ogiltiga inparametrar.</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>/workout/{id}</td>
+            <td>DELETE</td>
+            <td>Raderar en specifik workout baserat på id.</td>
+            <td>
+                <ul>
+                    <li>id (int, required)</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li>204 No Content</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
